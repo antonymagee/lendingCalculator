@@ -18,7 +18,7 @@
 <div class="container">
         <div class="col-6 col-centered">
             <h3>
-                Loan Payment Calculatordfs 
+                Loan Payment Calculator
                 <small id="para1" class="text-muted"></small>
             </h3>
             <div class="form-group">
@@ -55,7 +55,8 @@
             </div>
           </div> 
 
-      <div id="ex6SliderVal" class="hidden">1</div>   
+      <div id="ex6SliderVal" class="hidden">1</div>  
+    <input id="chartupdate" type="Button" class="btn btn-default" value="Capacity Chart" onclick="chartUpdate();">   
  <!-- 
     Beginning of Results Cards
   -->
@@ -115,6 +116,8 @@
     <!-- End of Container -->
 </div>
 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
@@ -180,17 +183,84 @@ $("#amount").keyup(function() {
 $("#apr").keyup(function() {
     
     calculate()
-});       
+});  
 
-/*
- * This script defines the calculate() function called by the event handlers
- * in HTML above. The function reads values from <input> elements, calculates
- * loan payment information, displays the results in <span> elements. It also
- * saves the user's data, displays links to lenders, and draws a chart.
- */
+ $('#chartupdate').click(function(){
+
+    chartUpdate();
+});
+
+
+function chartUpdate(){
+
+var canvas = document.getElementById('graph'),
+    ctx = canvas.getContext('2d'),
+    startingData = {
+      labels: [1, 2, 3, 4, 5, 6, 7],
+      datasets: [
+          {
+              fillColor: "rgba(220,220,220,0.2)",
+              strokeColor: "rgba(220,220,220,1)",
+              pointColor: "rgba(220,220,220,1)",
+              pointStrokeColor: "#fff",
+              data: [65, 59, 80, 81, 56, 55, 40]
+          },
+          {
+              fillColor: "rgba(151,187,205,0.2)",
+              strokeColor: "rgba(151,187,205,1)",
+              pointColor: "rgba(151,187,205,1)",
+              pointStrokeColor: "#fff",
+              data: [28, 48, 40, 19, 86, 27, 90]
+          }
+      ]
+    };
+
+    // Reduce the animation steps for demo clarity.
+    var myLiveChart = new Chart(ctx).Line(startingData);
+    // Get a random index point
+    var indexToUpdate = Math.round(Math.random() * startingData.labels.length);
+  
+    // Update one of the points in the second dataset
+    myLiveChart.datasets[1].points[indexToUpdate].value = Math.random() * 100;
+
+    myLiveChart.update();
+}
+
+
+
+chartjs()
+function chartjs(principal, interest, monthly, payments){
+     var numPayment = payments / 12;
+     var loanAmount = principal;
+
+var ctx = document.getElementById('graph').getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ["1","2","3","4","5"],
+    datasets: [{
+      label: 'Total',
+      data: [],
+      fillColor: "rgba(43, 191, 117, 0.6)",
+              strokeColor: "rgba(43, 191, 117, 0.6)",
+              pointColor: "rgba(220,220,220,1)",
+              pointStrokeColor: "#fff",
+    }, {
+      label: 'Principle',
+      data: [],
+      fillColor: "rgba(43, 191, 117, 0.6)",
+              strokeColor: "rgba(43, 191, 117, 0.6)",
+              pointColor: "rgba(151,187,205,1)",
+              pointStrokeColor: "#fff",
+    }]
+  }
+});
+
+}
+
+
 function calculate() {
 
-    debugger;
     // Look up the input and output elements in the document
     var amount = document.getElementById("amount");
     var apr = document.getElementById("apr");
