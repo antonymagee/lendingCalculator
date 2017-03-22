@@ -56,6 +56,7 @@
           </div> 
 
       <div id="ex6SliderVal" class="hidden">1</div>  
+      <button id="updateButton" type="button" class="btn btn-primary">Primary</button>
 
  <!-- 
     Beginning of Results Cards
@@ -167,13 +168,15 @@ var realValues = [0, 1, 3, 5, 10, 20];
 // used when the slider toggle stops moving to update the value onStop
 // also calls the caculate() function to update the total displayed numbers      
 $("#ex19").on("slideStop", function(){
-calculate()
+
+    calculate()
 });
 
 // same as above but this will trigger when the toggle si slid
 $("#ex19").on("slide", function(){
-calculate()
-	    });
+
+    calculate()
+});
 
 $("#amount").keyup(function() {
     
@@ -185,38 +188,49 @@ $("#apr").keyup(function() {
     calculate()
 });  
 
+$("#updateButton").on("click",function(){
 
-
-
-
-
-chartjs()
-function chartjs(principal, interest, monthly, payments){
-     var numPayment = payments / 12;
-     var loanAmount = principal;
-
-var ctx = document.getElementById('graph').getContext('2d');
-var myChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ["1","2","3","4","5"],
-    datasets: [{
-      label: 'Total',
-      data: [],
-      fillColor: "rgba(43, 191, 117, 0.6)",
-              strokeColor: "rgba(43, 191, 117, 0.6)",
-              pointColor: "rgba(220,220,220,1)",
-              pointStrokeColor: "#fff",
-    }, {
-      label: 'Principle',
-      data: [],
-      fillColor: "rgba(43, 191, 117, 0.6)",
-              strokeColor: "rgba(43, 191, 117, 0.6)",
-              pointColor: "rgba(151,187,205,1)",
-              pointStrokeColor: "#fff",
-    }]
-  }
+    var testVars = ["2","4","5","6","7"];
+    var testData = ["3","5","7","9","17"];
+    chartjs(testVars, testData)
 });
+
+
+
+
+
+
+
+
+
+function chartjs(testVars, testData){
+     //var numPayment = payments / 12;
+     //var loanAmount = principal;
+     var newData = testData
+     var newVars = testVars
+
+    var ctx = document.getElementById('graph').getContext('2d');
+    var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: newVars,
+        datasets: [{
+        label: 'Total',
+        data: testData,
+        fillColor: "rgba(43, 191, 117, 0.6)",
+                strokeColor: "rgba(43, 191, 117, 0.6)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+        }, {
+        label: 'Principle',
+        data: [],
+        fillColor: "rgba(43, 191, 117, 0.6)",
+                strokeColor: "rgba(43, 191, 117, 0.6)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+        }]
+    }
+    });
 
 }
 
@@ -258,7 +272,7 @@ function calculate() {
 
         // Save the user's input so we can restore it the next time they visit
         // save(amount.value, apr.value, years.value);
-
+        var lineChartYears = []
 
         // Draw Chart
         chart(principal, interest, monthly, payments);
