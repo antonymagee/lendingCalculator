@@ -206,6 +206,8 @@ $("#updateButton").on("click",function(){
 function chartjs(testVars, testData){
      //var numPayment = payments / 12;
      //var loanAmount = principal;
+
+
      var newData = testData
      var newVars = testVars
 
@@ -273,9 +275,9 @@ function calculate() {
         // Save the user's input so we can restore it the next time they visit
         // save(amount.value, apr.value, years.value);
         var lineChartYears = []
-
+        debugger;
         // Draw Chart
-        chart(principal, interest, monthly, payments);
+        chart(principal, interest, payments, monthly);
     }
     else {  
         // Result was Not-a-Number or infinite, which means the input was
