@@ -87,7 +87,7 @@
         <div class="card">
             <div class="card-header">Monthly</div>
             <div class="card-block">
-                <h4 class="card-title" id="payment"></h4>
+                <h4 class="card-title" id="paymentMonthly"></h4>
             </div>
         </div>
         <div class="card">
@@ -343,22 +343,22 @@ function calculate() {
         semiPayment.innerHTML = "$" + (monthly * 6).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
         yearlyPayment.innerHTML = "$" + (monthly * 12).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 
-        payment.innerHTML = "$" + monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+        paymentMonthly.innerHTML = "$" + monthly.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
         total.innerHTML = "$" + (monthly * payments).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
         totalpayment.innerHTML = "$" + ((monthly*payments)-principal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 
         // Save the user's input so we can restore it the next time they visit
         // save(amount.value, apr.value, years.value);
         var lineChartYears = []
-        debugger;
+
         // Draw Chart
-        //chartjs(principal, payment, payments, monthly, totalpayment);
+        chartjs(principal, payment, payments, monthly, totalpayment);
     }
     else {  
         // Result was Not-a-Number or infinite, which means the input was
         // incomplete or invalid. Clear any previously displayed output.
         quartelyPayment.innerHTML = "";
-        payment.innerHTML = "";        // Erase the content of these elements
+        paymentMonthly.innerHTML = "";        // Erase the content of these elements
         total.innerHTML = ""
         totalpayment.innerHTML = "";
         chart();                       // With no arguments, clears the chart
