@@ -239,7 +239,7 @@
   top: 0;
   width: 20px;
   height: 20px;
-  background-color: #369e29;
+  background-color: rgba(39, 159, 95, 0.75);
   background-image: -webkit-linear-gradient(top, #149bdf 0%, #0480be 100%);
   background-image: -o-linear-gradient(top, #149bdf 0%, #0480be 100%);
   background-image: linear-gradient(to bottom, #369e29 0%,  #2d8222 100%);

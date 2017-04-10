@@ -18,9 +18,22 @@
 #sliderInput {
     padding-left: 15px;
 }
+
+.pad{
+  padding-bottom: 10px;
+}
+
+.col3left{
+  float: left;
+}
+
 .col-centered{
-    float: none;
-    margin: 0 auto;
+    margin: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color:rgba(255, 255, 255, 0.9);
+    border-radius: 6px;
+
 }
 
 #calcForm{
@@ -30,6 +43,9 @@
 #ex6SliderVal{
   display: none;
 }
+
+
+
 
  /*!
  * 
@@ -117,6 +133,8 @@ hr {
           box-sizing: content-box;
   height: 0;
   overflow: visible;
+
+
 }
 
 pre {
@@ -415,6 +433,7 @@ body {
   line-height: 1.5;
   color: #292b2c;
   background-color: #fff;
+  background-image: url("fields-021.jpg");
 }
 
 [tabindex="-1"]:focus {
@@ -423,7 +442,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
-  margin-bottom: .5rem;
+  margin-bottom: .8rem;
+  padding-bottom: 15px;
 }
 
 p {
@@ -1078,7 +1098,8 @@ pre code {
   -webkit-flex: 0 0 50%;
       -ms-flex: 0 0 50%;
           flex: 0 0 50%;
-  max-width: 50%;
+
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, .5);
 }
 
 .col-7 {
@@ -1512,6 +1533,7 @@ pre code {
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
     width: auto;
+    max-width: 500px;
   }
   .col-md-1 {
     -webkit-box-flex: 0;
@@ -2461,6 +2483,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
 
 .form-group {
   margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .form-text {
@@ -3584,7 +3607,7 @@ tbody.collapse.show {
   line-height: 1.25;
   color: #464a4c;
   text-align: center;
-  background-color: #eceeef;
+  background-color: rgba(39, 159, 95, 0.75);
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
 }
@@ -4738,6 +4761,7 @@ tbody.collapse.show {
     -webkit-flex-flow: row wrap;
         -ms-flex-flow: row wrap;
             flex-flow: row wrap;
+    padding-bottom: 15px;        
   }
   .card-group .card {
     -webkit-box-flex: 1;
