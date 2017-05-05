@@ -11,9 +11,46 @@
  *   CUSTOM CSS FOR SLIDER
  *   Add buffer for slider so that it is inline
  */
+.tab-content {
+  margin-top: 15px;
+}
+
+#exTab1 .tab-content {
+  color : white;
+  background-color: rgba(39, 159, 95, 0.75);
+  padding : 5px 15px;
+}
+
+#exTab2 h3 {
+  color : white;
+  background-color: rgba(39, 159, 95, 0.75);
+  padding : 5px 15px;
+}
+
+/* remove border radius for the tab */
+
+#exTab1 .nav-pills > li > a {
+  border-radius: 0;
+}
+
+/* change border radius for the tab , apply corners on top*/
+
+#exTab3 .nav-pills > li > a {
+  border-radius: 4px 4px 0 0 ;
+}
+
+#exTab3 .tab-content {
+  color : white;
+  background-color: rgba(39, 159, 95, 0.75);
+  padding : 5px 15px;
+}
 
 
-
+#reset {
+  margin-top: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
 
 #sliderInput {
     padding-left: 15px;
@@ -564,6 +601,7 @@ th {
 label {
   display: inline-block;
   margin-bottom: .5rem;
+  margin-top: .5rem;
 }
 
 button:focus {
@@ -1532,8 +1570,8 @@ pre code {
     -webkit-flex: 0 0 auto;
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
-    width: auto;
-    max-width: 500px;
+    width: 100%;
+    max-width: 700px;
   }
   .col-md-1 {
     -webkit-box-flex: 0;
