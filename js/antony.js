@@ -17,19 +17,7 @@
                     calculate()
                 });
 
-             $('#ex192').bootstrapSlider({
-                value: 0,
-                max: 4,
-                min: 0,
-                step: 1,
-                ticks: [1, 2, 3, 4, 5],
-                ticks_labels: ["1", "3", "5", "10", "20"],
-
-            })
-                .on('change', function (data) {
-                    $("#ex6SliderVal2").text(realValues[data.value.newValue])
-                    calculate()
-                });   
+          
 
 
             // This block attatches listeners to the input fields to make sure any changes 
@@ -62,12 +50,12 @@
             // Reset button, removes the Div's for the slider and chart and seeds with a blank container
             $("#reset").click(function () {
 
-                $("#sliderInput2").html("<input id='ex192' type='text'>");
+                
                 $("#sliderInput").html("<input id='ex19' type='text'>");
-                $("#monthlyChartBlockDiv").html(" <canvas id='graph' width='400' height='250'></canvas>");
-                $("#quarterlyChartBlockDiv").html(" <canvas id='graph' width='400' height='250'></canvas>");
-                $("#semiannuallyChartBlockDiv").html(" <canvas id='graph' width='400' height='250'></canvas>");
-                $("#annuallyChartBlockDiv").html(" <canvas id='graph' width='400' height='250'></canvas>");
+                $("#monthlyChartBlockDiv").html(" <canvas id='monthlyChartBlockgraph' width='400' height='250'></canvas>");
+                $("#quarterlyChartBlockDiv").html(" <canvas id='quarterlyChartBlock' width='400' height='250'></canvas>");
+                $("#semiannuallyChartBlockDiv").html(" <canvas id='semiannuallyChartBlock' width='400' height='250'></canvas>");
+                $("#annuallyChartBlockDiv").html(" <canvas id='annuallyChartBlock' width='400' height='250'></canvas>");
 
 
 
@@ -83,21 +71,7 @@
                     .on('change', function (data) {
                         $("#ex6SliderVal").text(realValues[data.value.newValue])
                         calculate()
-                    });
-
-                     $('#ex192').bootstrapSlider({
-                value: 0,
-                max: 4,
-                min: 0,
-                step: 1,
-                ticks: [1, 2, 3, 4, 5],
-                ticks_labels: ["1", "3", "5", "10", "20"],
-
-            })
-                .on('change', function (data) {
-                    $("#ex6SliderVal2").text(realValues[data.value.newValue])
-                    calculate()
-                });   
+                    });  
 
                 // Start with all the results boxes initialized as blank  
 
@@ -223,7 +197,6 @@
                     ];
                 }
 
-debugger;
                 var ctx = document.getElementById(tab).getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'line',
@@ -258,13 +231,19 @@ debugger;
 
                 // Look up the input and output elements in the document
                 // Loan Amount
+                debugger;
                 var amount = document.getElementById("loanAmount");
                 // Interest Rate
                 var interest = document.getElementById("inputInterest");
                 // Slider value 
                 var years = parseFloat(document.getElementById("ex6SliderVal").childNodes[0].nodeValue);
                 // Takes loan amount input and changes it to an float
-                var principal = parseFloat(amount.value);
+
+                
+                
+                var principal = parseInt(amount.value.toString().replace(/,/g, ''), 10);
+
+                //var principal = parseInt(amount.value);
                 // Takes Interest input and changes to float with 3 decimal places
                 var inputInterest = parseFloat(interest.value).toFixed(3) / 100;
                 // Takes the number of years to amaturize and converts to months
