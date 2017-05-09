@@ -81,6 +81,12 @@
   display: none;
 }
 
+#ex6SliderVal2{
+  display: none;
+}
+
+
+
 
 
 
@@ -470,7 +476,8 @@ body {
   line-height: 1.5;
   color: #292b2c;
   background-color: #fff;
-  background-image: url("fields-021.jpg");
+  background-image: url("back.jpg");
+  background-size: cover;;
 }
 
 [tabindex="-1"]:focus {
