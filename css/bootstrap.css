@@ -11,6 +11,21 @@
  *   CUSTOM CSS FOR SLIDER
  *   Add buffer for slider so that it is inline
  */
+
+#monthlyChartBlock {
+  width: 100% !important;
+}
+#quarterlyChartBlock {
+  width: 100% !important;
+}
+#semiannuallyChartBlock {
+  width: 100% !important;
+}
+#annuallyChartBlock {
+  width: 100% !important;
+}
+
+
 .tab-content {
   margin-top: 15px;
 }
