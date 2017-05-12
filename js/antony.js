@@ -52,7 +52,7 @@
 
                 
                 $("#sliderInput").html("<input id='ex19' type='text'>");
-                $("#monthlyChartBlockDiv").html(" <canvas id='monthlyChartBlockgraph' width='400' height='250'></canvas>");
+                $("#monthlyChartBlockDiv").html(" <canvas id='monthlyChartBlock' width='400' height='250'></canvas>");
                 $("#quarterlyChartBlockDiv").html(" <canvas id='quarterlyChartBlock' width='400' height='250'></canvas>");
                 $("#semiannuallyChartBlockDiv").html(" <canvas id='semiannuallyChartBlock' width='400' height='250'></canvas>");
                 $("#annuallyChartBlockDiv").html(" <canvas id='annuallyChartBlock' width='400' height='250'></canvas>");
@@ -315,8 +315,15 @@
                         }
                     }// end of For
 
-                    tab1PrincipalFirst12.innerHTML = "$" + totalPrincipalPd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                       if (years == 1) {
+                        tab1PrincipalFirst12.innerHTML = "$" + principal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                        tab1InterestFirst12.innerHTML = "$" + cumulativeInterest.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                    } else {
+                        tab1PrincipalFirst12.innerHTML = "$" + totalPrincipalPd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     tab1InterestFirst12.innerHTML = "$" + totalInterestPd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                    }
+
+                    
                     chartjs(principal, payments, justInterest, tab);
                     /*tab1PrincipalFirst12.innerHTML = "$" + (principal -(principal * effectiveInterest)).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
             
@@ -396,8 +403,15 @@
                         }
                     }// end of For
 
-                    tab2PrincipalFirst12.innerHTML = "$" + totalPrincipalPd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                    if (years == 1) {
+                        tab2PrincipalFirst12.innerHTML = "$" + principal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                    tab2InterestFirst12.innerHTML = "$" + cumulativeInterest.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                    } else {
+                       tab2PrincipalFirst12.innerHTML = "$" + totalPrincipalPd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     tab2InterestFirst12.innerHTML = "$" + totalInterestPd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                    }
+
+                    
                     chartjs(principal, payments, justInterest, tab);
                 }
                 else {
@@ -471,8 +485,15 @@
                         }
                     }// end of For
 
-                    tab3PrincipalFirst12.innerHTML = "$" + totalPrincipalPd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+
+                    if (years == 1) {
+                        tab3PrincipalFirst12.innerHTML = "$" + principal.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                        tab3InterestFirst12.innerHTML = "$" + cumulativeInterest.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                    } else {
+                        tab3PrincipalFirst12.innerHTML = "$" + totalPrincipalPd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     tab3InterestFirst12.innerHTML = "$" + totalInterestPd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                    }
+                    
                     chartjs(principal, payments, justInterest, tab);
                 }
                 else {
@@ -517,7 +538,13 @@
                     tab4Total.innerHTML = "$" + ((envoy * paymentFreqPerYear) * years).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     tab4TotalInterest.innerHTML = "$" + cumulativeInterest.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 
-                    tab4PrincipalFirst12.innerHTML = "$" + (principal - (principal * effectiveInterest)).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                    if (years == 1) {
+                        tab4PrincipalFirst12.innerHTML = "$" + (principal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                    } else {
+                        tab4PrincipalFirst12.innerHTML = "$" + (principal - (principal * effectiveInterest)).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                    }
+                
+                   
 
                     tab4InterestFirst12.innerHTML = "$" + ((principal) * effectiveInterest).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     chartjs(principal, payments, justInterest, tab);
@@ -529,7 +556,6 @@
                     tab4Annually.innerHTML = "";        // Erase the content of these elements
                     tab4Total.innerHTML = ""
                     tab4TotalInterest.innerHTML = "";
-                    // tab4Yearly.innerHTML = "";
                     tab4PrincipalFirst12.innerHTML = "";
                     tab4InterestFirst12.innerHTML = "";
 
