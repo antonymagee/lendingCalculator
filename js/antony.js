@@ -106,11 +106,61 @@
 
             });
 
-            // Adds styling for the currency to be displayed in the LoanAmount input.
-            var cleaveNumeral = new Cleave('.input-numeral', {
+/*            // Adds styling for the currency to be displayed in the LoanAmount input.
+            var cleaveNumeral = new Cleave('tel', {
             numeral: true,
             numeralThousandsGroupStyle: 'thousand'
-            });
+        });*/
+        
+            var $form = $( "#inputForm" );
+            var $input = $form.find( "#loanAmount" );
+
+             $input.on( "keyup", function( event ) {
+            
+            
+            // When user select text in the document, also abort.
+            var selection = window.getSelection().toString();
+            if ( selection !== '' ) {
+                return;
+            }
+            
+            // When the arrow keys are pressed, abort.
+            if ( $.inArray( event.keyCode, [38,40,37,39] ) !== -1 ) {
+                return;
+            }
+            
+            
+            var $this = $( this );
+            
+            // Get the value.
+            var input = $this.val();
+            
+            var input = input.replace(/[\D\s\._\-]+/g, "");
+                    input = input ? parseInt( input, 10 ) : 0;
+
+                    $this.val( function() {
+                        return ( input === 0 ) ? "" : input.toLocaleString( "en-US" );
+                    } );
+        } );
+        
+        /**
+         * ==================================
+         * When Form Submitted
+         * ==================================
+         */
+        $form.on( "submit", function( event ) {
+            
+            var $this = $( this );
+            var arr = $this.serializeArray();
+        
+            for (var i = 0; i < arr.length; i++) {
+                    arr[i].value = arr[i].value.replace(/[($)\s\._\-]+/g, ''); // Sanitize the values.
+            };
+            
+            console.log( arr );
+            
+            event.preventDefault();
+        });
 
 
             // Draws the chart with the calues passed in.
@@ -566,14 +616,21 @@
 
 
             // Select your input element.
-            var number = document.getElementById('loanAmount', 'inputInterest');
+            var number = document.getElementById('loanAmount');
+            var number2 = document.getElementById('inputInterest');
 
             // Listen for input event on numInput. This block filters out keystrokes not from the 
             // num pad or the upper numbers keys
             number.onkeydown = function (e) {
-                if (!((e.keyCode > 95 && e.keyCode < 106)
+                if (!((e.keyCode > 95 && e.keyCode < 106)|| (e.keyCode > 47 && e.keyCode < 58)|| e.keyCode == 8)) {
+                    return false;
+                }
+            }
+
+            number2.onkeydown = function (e) {
+                if (!((e.keyCode > 95 && e.keyCode < 111)
                     || (e.keyCode > 47 && e.keyCode < 58)
-                    || e.keyCode == 8)) {
+                    || e.keyCode == 8 || e.keyCode == 190 )) {
                     return false;
                 }
             }
