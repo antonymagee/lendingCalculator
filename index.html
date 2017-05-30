@@ -44,13 +44,13 @@
                     <label for="loanAmount">Loan Amount</label>
                     <div class="input-group input-group-lg">  
                         <span class="input-group-addon">$</span>
-                        <input type="tel" maxlength="10" class="form-control" id="loanAmount" placeholder="$10,000 minimum" aria-describedby="basic-addon1">
+                        <input type="tel" maxlength="10" tabindex=1 class="form-control" id="loanAmount" placeholder="$10,000 minimum" aria-describedby="basic-addon1">
                     </div>
                     <br>
                     <label for="inputInterest">Interest</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon">%</span>
-                        <input type="text" maxlength="5" class="form-control" id="inputInterest" aria-describedby="basic-addon2">
+                        <input type="text" maxlength="5" tabindex=2 class="form-control" id="inputInterest" aria-describedby="basic-addon2">
                         <span class="input-group-btn">
                         <button onclick="window.open('https://www.afsc.ca/doc.aspx?id=1163')" class="btn btn-info" type="button">Get AFSC rates</button>
                     </span>
@@ -66,7 +66,7 @@
                     <br>
                 </form>
                 <div class="pad">
-                    <small class="text-muted ">*The calculator is for information purposes only.  Interest Rates are subject to change</small></div>
+                    <small class="text-muted ">*This calculator is for information purposes only.  Interest Rates are subject to change.</small></div>
                 <hr>
 
 
@@ -81,10 +81,10 @@
                         <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Quarterly</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Semi-Annnually</a>
+                        <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Semi-Annual</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Annually</a>
+                        <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Annual</a>
                     </li>
                 </ul>
 
@@ -139,9 +139,14 @@
                                 <div class="card-block" id="monthlyChartBlockDiv">
 
                                     <canvas id="monthlyChartBlock" width="400" height="250"></canvas>
+                                    
                                 </div>
+                                <div class="pad">
+                    <small class="text-muted ">Mouse over on any Graph dot for the Principal + interest or the Principal balance</small></div>
                             </div>
+                            
                         </div>
+                        
                     </div>
                     <div class="tab-pane" id="profile" role="tabpanel">
                         <div class="card-group">
@@ -198,9 +203,9 @@
                     <div class="tab-pane" id="messages" role="tabpanel">
                         <div class="card-group">
                             <div class="card">
-                                <div class="card-header">Semi-Annually </div>
+                                <div class="card-header">Semi-Annual</div>
                                 <div class="card-block">
-                                    <h4 class="card-title" id="tab3SemiAnnually"></h4>
+                                    <h4 class="card-title" id="tab3SemiAnnual"></h4>
                                 </div>
                             </div>
                             <div class="card">
@@ -251,7 +256,7 @@
                     <div class="tab-pane" id="settings" role="tabpanel">
                         <div class="card-group">
                             <div class="card">
-                                <div class="card-header">Annually</div>
+                                <div class="card-header">Annual</div>
                                 <div class="card-block">
                                     <h4 class="card-title" id="tab4Annually"></h4>
                                 </div>

@@ -89,7 +89,7 @@
                 $("#tab2PrincipalFirst12").empty();
                 $("#tab2InterestFirst12").empty();
 
-                $("#tab3SemiAnnually").empty();
+                $("#tab3SemiAnnual").empty();
                 $("#tab3Yearly").empty();
                 $("#tab3Total").empty();
                 $("#tab3TotalInterest").empty();
@@ -165,13 +165,14 @@
 
             // Draws the chart with the calues passed in.
             function chartjs(principal, payments, justInterest, tab) {
+                debugger;
                 // payments is the loan term in months - change to years
                 var paymentYears = payments / 12
                 // full loan + interest amount divided by term
-                var chartTotalpayment = (principal + justInterest) / paymentYears
+                var chartTotalpayment = parseInt((principal + justInterest) / paymentYears).toFixed(2);
                 // find the principal per year
-                var yearlyPrincipal = principal / paymentYears
-                var yearlyInterest = justInterest / paymentYears
+                var yearlyPrincipal = parseInt(principal / paymentYears).toFixed(2);
+                var yearlyInterest = parseInt(justInterest / paymentYears).toFixed(2);
 
 
                 if (paymentYears == 1) {
@@ -264,7 +265,7 @@
                         }, {
                             label: 'Principal',
                             data: principleLine,
-                            backgroundColor: "rgba(132, 189, 225, 0.8)",
+                            backgroundColor: "rgba(132, 189, 225, 1)",
                             strokeColor: "rgba(151,187,205,1)",
                             pointColor: "rgba(151,187,205,1)",
                             pointStrokeColor: "#fff",
@@ -498,7 +499,7 @@
                 if (isFinite(envoy)) {
 
                     tab3Yearly.innerHTML = "$" + (envoy * 2).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-                    tab3SemiAnnually.innerHTML = "$" + envoy.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                    tab3SemiAnnual.innerHTML = "$" + envoy.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     tab3Total.innerHTML = "$" + ((envoy * paymentFreqPerYear) * years).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     tab3TotalInterest.innerHTML = "$" + cumulativeInterest.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 
@@ -550,7 +551,7 @@
                     // Result was Not-a-Number or infinite, which means the input was
                     // incomplete or invalid. Clear any previously displayed output.
 
-                    tab3SemiAnnually.innerHTML = "";        // Erase the content of these elements
+                    tab3SemiAnnual.innerHTML = "";        // Erase the content of these elements
                     tab3Total.innerHTML = ""
                     tab3TotalInterest.innerHTML = "";
                     tab3Yearly.innerHTML = "";
@@ -622,7 +623,7 @@
             // Listen for input event on numInput. This block filters out keystrokes not from the 
             // num pad or the upper numbers keys
             number.onkeydown = function (e) {
-                if (!((e.keyCode > 95 && e.keyCode < 106)|| (e.keyCode > 47 && e.keyCode < 58)|| e.keyCode == 8)) {
+                if (!((e.keyCode > 95 && e.keyCode < 106)|| (e.keyCode > 47 && e.keyCode < 58)|| e.keyCode == 8 || e.keyCode == 9 )) {
                     return false;
                 }
             }
@@ -630,7 +631,7 @@
             number2.onkeydown = function (e) {
                 if (!((e.keyCode > 95 && e.keyCode < 111)
                     || (e.keyCode > 47 && e.keyCode < 58)
-                    || e.keyCode == 8 || e.keyCode == 190 )) {
+                    || e.keyCode == 8 || e.keyCode == 190 || e.keyCode == 9 )) {
                     return false;
                 }
             }
