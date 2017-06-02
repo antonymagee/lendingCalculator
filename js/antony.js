@@ -24,14 +24,21 @@
             // spark the calculate method to always update the total.
             // also calls the caculate() function to update the total displayed numbers      
             $("#ex19").on("slideStop", function () {
-
+               // document.getElementById("monthlyChartDiv").innerHTML = "";
+                document.getElementById("monthlyChartDiv").innerHTML = '<canvas id="monthlyChartBlock" width="400" height="250"></canvas>';
+                document.getElementById("quarterlyChartDiv").innerHTML = '<canvas id="quarterlyChartBlock" width="400" height="250"></canvas>';
+                document.getElementById("semiannuallyChartDiv").innerHTML = '<canvas id="semiannuallyChartBlock" width="400" height="250"></canvas>';
+                document.getElementById("annuallyChartDiv").innerHTML = '<canvas id="annuallyChartBlock" width="400" height="250"></canvas>';
                 calculate()
+             
             });
 
 
             $("#ex19").on("slide", function () {
-
+                var el = document.getElementsByTagName("iframe")[0];
+                el.parentNode.removeChild(el);
                 calculate()
+             
             });
 
             $("#loanAmount").keyup(function () {
@@ -164,8 +171,8 @@
 
 
             // Draws the chart with the calues passed in.
-            function chartjs(principal, payments, justInterest, tab) {
-                debugger;
+            function chartjs(principal, payments, justInterest, tab) {      
+
                 // payments is the loan term in months - change to years
                 var paymentYears = payments / 12
                 // full loan + interest amount divided by term
@@ -247,22 +254,14 @@
                         principal,
                     ];
                 }
-
+                              
                 var ctx = document.getElementById(tab).getContext('2d');
-                var myChart = new Chart(ctx, {
+
+                var tab = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: timeLine,
                         datasets: [{
-                            label: 'Principal + Interest',
-                            data: totalLine,
-                            backgroundColor: "rgba(174, 230, 173, 0.4)",
-                            strokeColor: "rgba(220,220,220,1)",
-                            pointColor: "rgba(220,220,220,1)",
-                            pointStrokeColor: "#fff",
-                            pointHighlightFill: "#fff",
-                            pointHighlightStroke: "rgba(220,220,220,1)"
-                        }, {
                             label: 'Principal',
                             data: principleLine,
                             backgroundColor: "rgba(132, 189, 225, 1)",
@@ -271,10 +270,22 @@
                             pointStrokeColor: "#fff",
                             pointHighlightFill: "#fff",
                             pointHighlightStroke: "rgba(151,187,205,1)"
+                            
+                        }, {
+                            label: 'Principal + Interest',
+                            data: totalLine,
+                            backgroundColor: "rgba(174, 230, 173, 0.8)",
+                            strokeColor: "rgba(220,220,220,1)",
+                            pointColor: "rgba(220,220,220,1)",
+                            pointStrokeColor: "#fff",
+                            pointHighlightFill: "#fff",
+                            pointHighlightStroke: "rgba(220,220,220,1)"
 
                         }]
                     }
                 });
+
+                
 
             }
 
@@ -282,7 +293,7 @@
 
                 // Look up the input and output elements in the document
                 // Loan Amount
-                debugger;
+                
                 var amount = document.getElementById("loanAmount");
                 // Interest Rate
                 var interest = document.getElementById("inputInterest");
@@ -371,17 +382,17 @@
                         tab1InterestFirst12.innerHTML = "$" + cumulativeInterest.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     } else {
                         tab1PrincipalFirst12.innerHTML = "$" + totalPrincipalPd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-                    tab1InterestFirst12.innerHTML = "$" + totalInterestPd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                        tab1InterestFirst12.innerHTML = "$" + totalInterestPd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     }
 
+                   
+                    
+                    tab1PrincipalFirst12.innerHTML = "$" + (principal -(principal * effectiveInterest)).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                    
+                    tab1InterestFirst12.innerHTML = "$" + ((principal) * effectiveInterest).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     
                     chartjs(principal, payments, justInterest, tab);
-                    /*tab1PrincipalFirst12.innerHTML = "$" + (principal -(principal * effectiveInterest)).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-            
-                    tab1InterestFirst12.innerHTML = "$" + ((principal) * effectiveInterest).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');*/
-
-                    // Draw Chart
-                    //chartjs(principal, payments, cumulativeInterest);
+                  
                 }
                 else {
                     // Result was Not-a-Number or infinite, which means the input was
@@ -544,8 +555,12 @@
                         tab3PrincipalFirst12.innerHTML = "$" + totalPrincipalPd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     tab3InterestFirst12.innerHTML = "$" + totalInterestPd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     }
-                    
+
+
                     chartjs(principal, payments, justInterest, tab);
+
+                          
+                    
                 }
                 else {
                     // Result was Not-a-Number or infinite, which means the input was
@@ -595,7 +610,6 @@
                         tab4PrincipalFirst12.innerHTML = "$" + (principal - (principal * effectiveInterest)).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     }
                 
-                   
 
                     tab4InterestFirst12.innerHTML = "$" + ((principal) * effectiveInterest).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
                     chartjs(principal, payments, justInterest, tab);

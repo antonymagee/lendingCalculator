@@ -12,6 +12,24 @@
  *   Add buffer for slider so that it is inline
  */
 
+#quarterlyChartDiv {
+  width: 100%;
+  min-height: 392px;
+}
+#monthlyChartDiv {
+  width: 100%;
+  min-height: 392px;
+}
+#semiannuallyChartDiv {
+  width: 100%;
+  min-height: 392px;
+}
+#annuallyChartDiv {
+  width: 100%;
+  min-height: 392px;
+}
+
+
 #monthlyChartBlock {
   width: 100% !important;
 }
